@@ -35,9 +35,13 @@ def predict(image_file):
     print(image_file.name)
     print(image.size)
     model.load_image(numpydata)
-    predicted, im_ret = model.evaluate()
+    # predicted, im_ret = model.evaluate()
+    predicted = model.predict()
+    
     #predicted_value_converted_to_yn = "Yes" if str(predicted_value) == 1 else "No"
     print(predicted)
-    return {
-        "Contains Coke (Can)": str(predicted[0]),
-    }
+    if predicted[0][0] > predicted[0][1]:
+        return {"Contains Coke (Can)": '0'}
+    else:
+        return {"Contains Coke (Can)": '1'}
+
