@@ -39,14 +39,14 @@ def save_to_file(file_path, dictionary, mode):
 
 
 class SodaModel:
-    def __init__(self, model_path='sodanet/model/AlexNet.hdf5', output_shape=DEFAULT_OUTPUT_SHAPE):
-        default_model_path = 'sodanet/model/AlexNet.hdf5'
-        google_drive_file_id = '1sAy-xarlnIu0OK6czOMCj3UMHy-0JyvJ'
-
+    def __init__(self, model_path='SodaNet/sodanet/model/AlexNet.hdf5', output_shape=DEFAULT_OUTPUT_SHAPE):
+        # default_model_path = 'sodanet/model/AlexNet.hdf5'
+        # google_drive_file_id = '1sAy-xarlnIu0OK6czOMCj3UMHy-0JyvJ'
+        #
         self.downloading_from_file = False
         self.output_shape = output_shape
-
-        fetch_model_file()
+        #
+        # fetch_model_file()
         self.model = tf.keras.models.load_model(model_path, custom_objects={'RAdam': RAdam(lr=0.01)})
 
     def get_model(self):

@@ -2,6 +2,9 @@ import asyncio
 from PIL import Image
 from SodaNet.sodanet_model import SodaModel
 from matplotlib.image import imread
+import numpy
+import os
+import shutil
 model = None
 async def init():
     """
@@ -23,14 +26,18 @@ def predict(image_file):
     changed and your model must be able to predict given a file-like object
     with the image as an input.
     """
-
-    model = SodaModel()
+    global model
+    # image = Image.open(image_file.name)
+    image = Image.open(image_file.name)
+    numpydata = numpy.asarray(image)
     if model == None:
         raise RuntimeError("SodaNet model is not loaded properly")
-
-    model.load_image(imread(image_file))
-    predicted_value, im_ret = model.evaluate()
-    predicted_value_converted_to_yn = "Yes" if str(predicted_value) == 1 else "No"
+    print(image_file.name)
+    print(image.size)
+    model.load_image(numpydata)
+    predicted, im_ret = model.evaluate()
+    #predicted_value_converted_to_yn = "Yes" if str(predicted_value) == 1 else "No"
+    print(predicted)
     return {
-        "Contains Coke (Can)": predicted_value_converted_to_yn,
+        "Contains Coke (Can)": str(predicted[0]),
     }
