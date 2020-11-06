@@ -1,3 +1,4 @@
+pydantic
 fastapi
 pyinstaller
 setuptools
@@ -14,3 +15,5 @@ keras
 googledrivedownloader
 gdown
 opencv-python
+requests
+python-dotenv
